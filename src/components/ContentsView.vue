@@ -6,7 +6,7 @@
                 <p>contents</p>
                 <div class="icons">
                     <i class="material-icons">announcement</i>
-                    <i class="material-icons" @click="writeModeOn">create</i>
+                    <i class="material-icons" @click="detailMemo(items[index])">create</i>
                     <i class="material-icons" @click="deleteMemo(index)">delete_outline</i>
                 </div>
             </div>
@@ -42,8 +42,8 @@ export default {
         deleteMemo(id) {
             this.items.splice(id, 1);
         },
-        writeModeOn() {
-            this.writeMode = !this.writeMode;
+        detailMemo(data) {
+            this.$emit('get-detail', data)
         }
     }
 }
