@@ -1,9 +1,9 @@
 <template>
     <div id='view'>
         <div class="wrapper grid">
-            <div v-for='(item, index) in items' :key="item" class="item">
+            <div v-for='(item, index) in items' :key="index" class="item">
                 <p>{{ item.title }}</p>
-                <p>contents</p>
+                <p>{{ item.contents }}</p>
                 <div class="icons">
                     <i class="material-icons">announcement</i>
                     <i class="material-icons" @click="detailMemo(items[index])">create</i>
@@ -25,10 +25,10 @@ export default {
     data() {
         return {
             items: [
-                {title: 'test1'},
-                {title: 'test2'},
-                {title: 'test3'},
-                {title: 'test4'},
+                {title: 'test1', contents: 'content1'},
+                {title: 'test2', contents: 'content2'},
+                {title: 'test3', contents: 'content3'},
+                {title: 'test4', contents: 'content4'},
             ],
             writeMode: false,
         }
@@ -37,13 +37,15 @@ export default {
         addNewMemo() {
             this.items.push({
                 title: '新しいメモ',
+                contents: `content${this.items.length + 1}`
             });
         },
         deleteMemo(id) {
             this.items.splice(id, 1);
         },
         detailMemo(data) {
-            this.$emit('get-detail', data)
+            this.$store.commit('setMemoData', data)
+            this.$emit('get-detail')
         }
     }
 }

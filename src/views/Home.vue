@@ -27,10 +27,10 @@ export default {
     }
   },
   methods: {
-    getDetail(arg) {
-      this.detailData = arg;
+    getDetail() {
+      let data  = this.$store.getters.memoData
       this.isActive = true;
-      console.log(this.detailData.title)
+      console.log(data.title)
     },
     isDeactive() {
       this.isActive = false;

@@ -2,9 +2,12 @@
     <div id="contents-detail">
         <div class="container">
             <i class="material-icons" @click="isDeactive">clear</i>
+            <input type="text" class="forms" v-model="detailData.title">
+            <textarea cols="30" rows="10" class="forms" v-model="detailData.contents"></textarea>
             <input type="text" class="forms">
-            <textarea cols="30" rows="10" class="forms"></textarea>
-            <input type="text" class="forms">
+            <div class="forms btn">
+                <button>Update</button>
+            </div>
         </div>
     </div>
 </template>
@@ -15,6 +18,11 @@ export default {
     methods: {
         isDeactive() {
             this.$emit('is-deactive')
+        }
+    },
+    computed: {
+        detailData() {
+            return this.$store.getters.memoData
         }
     }
 }
@@ -33,6 +41,11 @@ export default {
 
 .forms {
     margin: 20px; 
-    border-radius: 10px
+    font-size: 18px;
+}
+
+.btn {
+    display: flex;
+    justify-content: flex-end;
 }
 </style>
