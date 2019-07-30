@@ -5,8 +5,7 @@
                 <p>{{ item.title }}</p>
                 <p>{{ item.contents }}</p>
                 <div class="icons">
-                    <i class="material-icons">announcement</i>
-                    <i class="material-icons" @click="detailMemo(items[index])">create</i>
+                    <i class="material-icons" @click="detailMemo(items[index])">announcement</i>
                     <i class="material-icons" @click="deleteMemo(index)">delete_outline</i>
                 </div>
             </div>
@@ -56,7 +55,7 @@ export default {
     display: grid;
     gap: 26px;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 6%;
+    margin-top: 3%;
     margin-bottom: 50px; 
 }
 

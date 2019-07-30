@@ -1,8 +1,10 @@
 <template>
     <div id='contents-title'>
-        <div class="page-content wrapper">
+        <div class="page-content wrapper title-container">
+            <div class="box">
                 <p class="page-title">Title</p>
                 <p class="page-sub-title">高機能メモアプリ</p>
+            </div>
         </div>
     </div>
 </template>
@@ -16,7 +18,6 @@ export default {
 <style>
 
 .wrapper {
-    text-align: center;
     max-width: 1100px;
     margin: 10px auto;
     padding: 0 4%;
@@ -26,13 +27,24 @@ export default {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(../image/ole-witt-d-Kq8TmxlK0-unsplash.jpg);
+    background-image: url(../image/dollar-gill-0V7_N62zZcU-unsplash.jpg);
     min-height: 500px;
 }
 
-.page-content p {
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box {
     font-size: 1.125rem;
     margin: 10px 0 42px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(18px);
+    border-radius: 10px;
 }
 
 </style>

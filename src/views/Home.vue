@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <contents-title />
+    <contents-title/>
     <contents-detail v-if='isActive' @is-deactive='isDeactive'/>
     <contents-view @get-detail='getDetail' />
   </div>
@@ -38,3 +38,4 @@ export default {
   }
 }
 </script>
+
