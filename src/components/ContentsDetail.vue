@@ -2,20 +2,20 @@
     <div id="contents-detail">
 
         <div class="container" v-if="writeMode">
-            <i class="material-icons" @click="isDeactive">clear</i>
+            <i class="material-icons common-icons" @click="isDeactive">clear</i>
             <input type="text" class="forms" v-model="detailData.title">
             <textarea cols="30" rows="10" class="forms" v-model="detailData.contents"></textarea>
             <div class="detail-tags">
                     <div v-for="(tag, index) in detailData.tags" :key="index" class="tag">
                         {{ tag }}
-                        <i class="material-icons" @click="tagClear(index)">clear</i>
+                        <i class="material-icons common-icons" @click="tagClear(index)">clear</i>
                     </div>
                     <div class="tag new-tag" v-if="tagAddMode" >
                         <input type="text" v-model='tag' @blur='tagAddModeOff' @keydown.enter="tagAdd(); tagAddModeOff();">
                     </div>
                     <div class="tag new-tag" v-else>
                         new
-                        <i class="material-icons" @click="tagAddModeOn">create</i>
+                        <i class="material-icons common-icons" @click="tagAddModeOn">create</i>
                     </div>
             </div>
             <div class="forms btn">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="container" v-else>
-            <i class="material-icons" @click="isDeactive">clear</i>
+            <i class="material-icons common-icons" @click="isDeactive">clear</i>
             <div class="views">
                 <p>{{ detailData.title }}</p>
                 <p>{{ detailData.contents }}</p>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="forms btn">
-                <i class="material-icons" @click="writeModeOn">create</i>
+                <i class="material-icons common-icons" @click="writeModeOn">create</i>
             </div>
         </div>
 
@@ -88,7 +88,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 3% auto;
-    border: 1px solid;
+    border: 1px solid rgba( 50, 90, 150, 1);
     border-radius: 10px;
     max-width: 1100px;
 }
@@ -103,7 +103,12 @@ export default {
 
 .forms {
     margin: 20px; 
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.container input, textarea {
+    border: 1px solid rgba( 153, 192, 255, 1);
+    border-radius: 5px;
 }
 
 .btn {

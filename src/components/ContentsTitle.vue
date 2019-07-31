@@ -47,4 +47,11 @@ export default {
     border-radius: 10px;
 }
 
+.page-title {
+    font-size: 50px;
+}
+
+.page-sub-title {
+    font-size: 30px;
+}
 </style>

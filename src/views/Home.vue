@@ -13,6 +13,7 @@ import ContentsTitle from '../components/ContentsTitle'
 import ContentsView from '../components/ContentsView'
 import ContentsDetail from '../components/ContentsDetail'
 
+
 export default {
   name: 'home',
   components: {

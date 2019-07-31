@@ -5,24 +5,26 @@
                 <p>{{ item.title }}</p>
                 <p>{{ item.contents }}</p>
                 <div class="tags">
-                    <div>tag:</div>
+                    <div class="tag-title">tag:</div>
                     <div v-for='(tag, index) in item.tags' :key='index' class="tag">{{ tag }}</div>
                 </div>
                 <div class="icons">
-                    <i class="material-icons" @click="detailMemo(items[index])">announcement</i>
-                    <i class="material-icons" @click="deleteMemo(index)">delete_outline</i>
+                    <i class="material-icons common-icons" @click="detailMemo(items[index])">announcement</i>
+                    <i class="material-icons common-icons" @click="deleteMemo(index)">delete_outline</i>
                 </div>
             </div>
 
             <div class="new item">
                 <p>New Memo</p>
-                <a @click="addNewMemo"><i class="material-icons">add</i></a>
+                <a @click="addNewMemo"><i class="material-icons common-icons">add</i></a>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import db from '../firebase/firestore.js'
+
 export default {
     name: 'view',
     data() {
@@ -40,7 +42,8 @@ export default {
         addNewMemo() {
             this.items.push({
                 title: '新しいメモ',
-                contents: `content${this.items.length + 1}`
+                contents: `content${this.items.length + 1}`,
+                tags: [],
             });
         },
         deleteMemo(id) {
@@ -49,8 +52,26 @@ export default {
         detailMemo(data) {
             this.$store.commit('setMemoData', data)
             this.$emit('get-detail')
+        },
+        getMemos() {
+            const memos =db.collection('memo-data').doc('IKpdfpt8zQH9M04GdujY').collection('memos')
+            memos.onSnapshot(querySnapshot => {
+                querySnapshot.forEach( doc => {
+                    let data = {
+                        'id': doc.id,
+                        'title': doc.data().title,
+                        'contents': doc.data().contents,
+                        'tags': doc.data().tags,
+                        'created_at': doc.data().created_at,
+                    }
+                    this.items.push(data)
+                })
+            })
+        },
+        created() {
+            this.getMemos();
         }
-    }
+    },
 }
 </script>
 
@@ -64,7 +85,7 @@ export default {
 }
 
 .item {
-    border: solid 1px;
+    border: solid 1px rgba( 50, 90, 150, 1);
     border-radius: 10px;
     text-align: center;
     height: 300px;
@@ -87,12 +108,22 @@ export default {
     justify-content: flex-start;
     align-items: center;
     margin-top: auto;
+    flex-wrap: wrap;
 }
 
 .tag {
-        margin: 5px;
-        border: 1px solid;
-        border-radius: 10px;
-        padding: 1px;
+    margin: 5px;
+    border: 1px solid rgba( 153, 192, 255, 1);
+    background-color: rgba( 153, 192, 255, 0.5);
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.tag-title{
+    margin-left: 3px;
+}
+
+.common-icons {
+    color: rgba( 50, 90, 150, 1);
 }
 </style>
