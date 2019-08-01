@@ -7,7 +7,6 @@
 </template>
 
 <script>
-/* eslint-disable  no-console*/
 
 import ContentsTitle from '../components/ContentsTitle'
 import ContentsView from '../components/ContentsView'
@@ -29,9 +28,7 @@ export default {
   },
   methods: {
     getDetail() {
-      let data  = this.$store.getters.memoData
       this.isActive = true;
-      console.log(data.title)
     },
     isDeactive() {
       this.isActive = false;

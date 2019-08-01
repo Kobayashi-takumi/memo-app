@@ -54,4 +54,5 @@ export default {
 .page-sub-title {
     font-size: 30px;
 }
+
 </style>

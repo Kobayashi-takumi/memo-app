@@ -19,7 +19,7 @@
                     </div>
             </div>
             <div class="forms btn">
-                <button @click="writeModeOn">Update</button>
+                <button @click="memoUpdate(); writeModeOn();" class="update-btn"><i class="material-icons">touch_app</i></button>
             </div>
         </div>
 
@@ -43,6 +43,7 @@
 
 <script>
 /* eslint-disable  no-console*/
+import db from '../firebase/firestore'
 
 export default {
     name: 'contents-detail',
@@ -72,6 +73,14 @@ export default {
         },
         tagClear(id) {
             this.detailData.tags.splice(id, 1);
+        },
+        memoUpdate() {
+            const memos = db.collection('memo-data').doc(this.$store.getters.user.uid).collection('memos').doc(this.detailData.id)
+            memos.set({
+                title: this.detailData.title,
+                contents: this.detailData.contents,
+                tags: this.detailData.tags,
+            })
         }
     },
     computed: {
@@ -91,6 +100,7 @@ export default {
     border: 1px solid rgba( 50, 90, 150, 1);
     border-radius: 10px;
     max-width: 1100px;
+    background-color: rgba( 153, 192, 255, 0.1);
 }
 
 .views {
@@ -111,15 +121,30 @@ export default {
     border-radius: 5px;
 }
 
-.btn {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .detail-tags {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: auto;
+}
+
+.btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.update-btn {
+    width: 10vw;
+    height: 5vh;
+    border: 0;
+    border-radius: 5px; 
+    background-color: rgba( 153, 192, 255, 1);
+    color: #fff;
+}
+
+.update-btn:hover {
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
 }
 </style>

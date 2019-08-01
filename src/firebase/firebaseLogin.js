@@ -1,11 +1,13 @@
+
 import firebase from '@firebase/app';
 import '@firebase/auth';
 import store from '../store.js';
 import router from '../router.js'
 
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-
 export default {
+    init() {
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    },
     login() {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider);
